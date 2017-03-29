@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <title>CSS3 Charts-Global usage share of web browsers</title>
+<!--<link href="../static/css/stylesheet.css" rel="stylesheet" type="text/css" />
+<link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="../static/css/business-frontpage.css" rel="stylesheet" type="text/css" />
+<link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css" /> -->
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<link rel=stylesheet type="text/css" href="{{ url_for('static', filename='../static/css/bootstrap.min.css') }}">
+<link rel=stylesheet type="text/css" href="{{ url_for('static', filename='../static/css/business-frontpage.css') }}">
+<link rel=stylesheet type="text/css" href="{{ url_for('static', filename='../static/css/bootstrap.css') }}">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+<style>
+  h4.visible {
+      visibility: visible
+  }
+
+  h4.hidden {
+      visibility: hidden
+  }
+</style>
+
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display-->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="main">QuizYou</a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                  <li>
+                      <a href="/">Logout</a>
+                  </li>
+                  <li>
+                      <a href="quizlist">My Quiz</a>
+                  </li>
+                  <li>
+                      <a href="main">Answered</a>
+                  </li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+  </nav>
+  <div class="container">
+      <hr>
+    <div class="row">
+      <h4 class="text-center">{{title}}</h4>
+    </div>
+    <div class="row">
+      <div id="donut-example" style="height: 250px;"></div>
+    </div>
+      <h4 class="text-center {{visibility}}" type>Your answer is: {{answer}}</h4>
+    <div class="block-center">
+      <ul class="list-group">
+        <li class="list-group-item {{active[0]}}">Alternative 1  -  {{alt1}}</li>
+        <li class="list-group-item {{active[1]}}">Alternative 2  -  {{alt2}}</li>
+        <li class="list-group-item {{active[2]}}">Alternative 3  -  {{alt3}}</li>
+        <li class="list-group-item {{active[3]}}">Alternative 4  -  {{alt4}}</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    var percentages0 = '{{ percentages[0] }}';
+    var percentages1 = '{{ percentages[1] }}';
+    var percentages2 = '{{ percentages[2] }}';
+    var percentages3 = '{{ percentages[3] }}';
+    var usage_graph = new Morris.Donut({
+      element: 'donut-example',
+      data: [
+        {label: "Alternative 1", value: percentages0},
+        {label: "Alternative 2", value: percentages1},
+        {label: "Alternative 3", value: percentages2},
+        {label: "Alternative 4", value: percentages3}
+      ]
+    });
+
+    $('ul.nav a').on('shown.bs.tab', function (e) {
+        usage_graph.redraw();
+    });
+  </script>
+</body>
+</html>

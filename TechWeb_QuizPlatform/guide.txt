@@ -1,0 +1,5 @@
+- gerar os campos de alternativas
+- database:
+	- fazer uma tabela com num de alternativas e lista de alternativas
+	(ver se da pra armazenar listas)
+	- fazer uma tabela com limite de 10 alternativas
